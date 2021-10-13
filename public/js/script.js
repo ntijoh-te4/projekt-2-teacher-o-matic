@@ -10,16 +10,15 @@ async function readFile(file) {
     .then(text => text)
 }
 async function getToken() {
-    let response = await readFile('../../token.key');
+    let response = await readFile('../../api.key');
     return response;
 }
 
 
-async function getRepositories(user) {
+async function getRepositories() {
     return await fetch(api_url + "users/" + user + '/repos', { method: 'GET', headers: {'Authorization': 'token' + await getToken()}})
     .then(result => result.json())
     .then(data => data);
-    console.log(data);
 }
 
 async function getForks(user, repository) {
