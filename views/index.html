@@ -13,27 +13,18 @@
 <body>
     <nav>
         <div class="nav-wrapper">
-            <span class="material-icons">account_circle
-                <form id="user-search">
-                    <div class="input-field">
-                        <input id="search" type="search" required placeholder="Search">
-                    </div>
-                </form>
-            </span>
-            
+            <form id="user-search">
+                <div class="input-field">
+                    <input id="search" type="search" placeholder="Git-user">
+                    <label class="label-icon" for="search"><i class="material-icons">account_box</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+            <span id="showUserRepos" title="My repos"><i class="fas fa-user-circle"></i></span>
+            <span id="showComments" title="Show comments"><i  class="fas fa-comment"></i></span>
         </div>
-      </nav>
-
-    <div class="repo_div">
-        <h4 class="repo_title">Repository name</h4>
-        <div>
-            <a href="../views/fork_listing.html">Show forks</a>
-        <p>|</p>
-        <a href="https://github.com/#{user}/#{Repository}">Show on Github</a>
-    </div>  
-  </div> 
-
-    <script src="/public/js/script.js"></script>
+    </nav>
+      <script src="/public/js/script.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>

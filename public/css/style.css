@@ -1,9 +1,13 @@
 /* CSS */
+*{
+    margin: 0%;
+    padding: 0%;
+}
 body{
     padding: 0%;
     margin: 0%;
 }
-.nav-wrapper{
+/* .nav-wrapper{
     margin-left: 0%;
 }
 .material-icons{
@@ -16,4 +20,4 @@ body{
 }
 div{
     margin-left: 5%;
-}
+} */
