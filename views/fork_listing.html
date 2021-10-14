@@ -12,15 +12,17 @@
 <body>
     <nav>
         <div class="nav-wrapper">
-            <span class="material-icons">account_circle
-                <form>
-                    <div class="input-field">
-                        <input id="search" type="search" required placeholder="Search">
-                    </div>
-              </form>
-            </span>
+            <form id="input">
+                <div class="input-field">
+                    <input id="search" type="search" placeholder="Git-user">
+                    <label class="label-icon" for="search"><i class="material-icons">account_box</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+            <span id="showUserRepos" title="My repos"><i class="fas fa-user-circle"></i></span>
+            <span id="showComments" title="Show comments"><i  class="fas fa-comment"></i></span>
         </div>
-    </nav>
+      </nav>
     <template id="fork-template-id">
         <div>
             <h3>ntijoh-TE4/smallest_of_two</h3>

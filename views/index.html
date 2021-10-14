@@ -16,18 +16,17 @@
     </script> -->
     <nav>
         <div class="nav-wrapper">
-            <span class="material-icons">
-                account_circle
-            </span>
-            <form>
+            <form id="input">
                 <div class="input-field">
-                <input id="search" type="search" required>
-                <i class="material-icons">close</i>
-
+                    <input id="search" type="search" placeholder="Git-user">
+                    <label class="label-icon" for="search"><i class="material-icons">account_box</i></label>
+                    <i class="material-icons">close</i>
                 </div>
-          </form>
+            </form>
+            <span id="showUserRepos" title="My repos"><i class="fas fa-user-circle"></i></span>
+            <span id="showComments" title="Show comments"><i  class="fas fa-comment"></i></span>
         </div>
-      </nav>
+    </nav>
       <script src="/public/js/script.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
