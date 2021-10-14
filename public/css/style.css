@@ -1,0 +1,19 @@
+/* CSS */
+body{
+    padding: 0%;
+    margin: 0%;
+}
+.nav-wrapper{
+    margin-left: 0%;
+}
+.material-icons{
+    font-size: 4.5rem;
+}
+#search{
+    margin-top: -12%;
+    margin-left: 20%;
+    font-size: 24px;
+}
+div{
+    margin-left: 5%;
+}
