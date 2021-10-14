@@ -19,49 +19,57 @@
                     </div>
               </form>
             </span>
-            
         </div>
-      </nav>
-      <div>
-          <h3>ntijoh-TE4/smallest_of_two</h3>
-          <p>
-              function smallestOfTwo (number1, number2){<br>
-                  if (number1 < number2){<br>
-                      let smallest = number1;<br>
-                  }<br>
-                  else {<br>
-                      smallest = number2;<br>
-                  }<br>
-                  return smallest;<br>
-              }
-          </p>
-          <a href="https://github.com">Show on gitHub</a>
-          <form>
-            <input placeholder="Kommentar">Comment
-            <div>
-                <input type="radio" id="done" name="status_grade" value="done">
-                <label for="done"><span class="material-icons">
-                    done
-                    </span>Klar</label><br>
-            </div>
-            <div>
-                <input type="radio" id="measure" name="status_grade" value="measure">
-                <label for="measure"><span class="material-icons">
-                    autorenew
-                    </span>Åtgärd Krävs</label>
-            </div>
-            <div>
-                <input type="radio" id="not_graded" name="status_grade" value="not_graded"
-                    checked>
-                <label for="not_graded"><span class="material-icons">
-                    hide_source
-                    </span>Ej Bedömd</label>
-            </div>
+    </nav>
+    <template id="fork-template-id">
+        <div>
+            <h3>ntijoh-TE4/smallest_of_two</h3>
+            <p>
+                function smallestOfTwo (number1, number2){<br>
+                    if (number1 < number2){<br>
+                        let smallest = number1;<br>
+                    }<br>
+                    else {<br>
+                        smallest = number2;<br>
+                    }<br>
+                    return smallest;<br>
+                }
+            </p>
+            <a href="https://github.com">Show on gitHub</a>
+            <form>
+                <input placeholder="Kommentar">Comment
+                <div>
+                    <input type="radio" id="done" name="status_grade" value="done">
+                    <label for="done">
+                        <span class="material-icons">
+                            done
+                        </span>
+                            Klar
+                    </label><br>
+                </div>
+                <div>
+                    <input type="radio" id="measure" name="status_grade" value="measure">
+                    <label for="measure">
+                        <span class="material-icons">
+                            autorenew
+                        </span>
+                        Åtgärd Krävs
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="not_graded" name="status_grade" value="not_graded" checked>
+                    <label for="not_graded">
+                        <span class="material-icons">
+                            hide_source
+                        </span>Ej Bedömd
+                    </label>
+                </div>
                 <button type="submit">
-                SAVE
-            </button>
-        </form>
+                    SAVE
+                </button>
+            </form>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </template>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
