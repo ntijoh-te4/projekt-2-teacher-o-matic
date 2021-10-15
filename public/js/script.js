@@ -18,17 +18,31 @@ async function getToken() {
 document.querySelector("#user-search").addEventListener("submit", api);
 
 async function getRepositories(user) {
-    //const token = await getToken();
-    //console.log(token);
     const response = await fetch(api_url + "users/" + user + '/repos', { method: 'GET', headers: {'Authorization': 'token ' + await getToken()  }})
-    const json = await response.json()
-    console.log(response);
-    console.log(json);
-    return json.data;
-    //returns a promise containing a map with repos abd related data
-}
+    const resp_body = await response.json()
+    
+    console.log(resp_body[0].name);
 
-async function getForks(user) {
+    return resp_body.data;
+    //returns a promise containing a map with repos abd related data
+
+
+    //const response = await fetch(api_url + "users/" + user + '/repos', { method: 'GET', headers: {'Authorization': 'token ' + await getToken()  }})
+    //.then(response => response.json()).then(data => data).then(name => name);
+    //console.log(response.get("name"));
+    //return response;
+} 
+
+
+
+
+
+
+
+
+
+
+async function getForks(user, repository) {
     const response = await fetch(api_url + "repos/" + user + "/" + repository + "forks", { method: 'GET', headers: {'Authorization': 'token ' + await getToken() }})
     const json = await response.json()
     return json.data;
