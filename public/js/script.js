@@ -12,6 +12,17 @@ async function getToken() {
   return response;
 }
 
+document.querySelector('#clear-input').addEventListener('click', clearInput);
+async function clearInput(){
+  addEventListener('click', (e) => {
+    console.log('fuck you');
+    if (e.target.id === 'clear-input') {
+      document.querySelector('#search').value = '';
+      const repoDiv = document.querySelector('.show_repos');
+      repoDiv.innerHTML = '';
+    }
+  })};
+
 // adds eventlistener on input
 // eslint-disable-next-line no-use-before-define
 document.querySelector('#user-search').addEventListener('submit', api);
@@ -20,6 +31,7 @@ async function getRepositories(user) {
   const response = await fetch(`${apiUrl}users/${user}/repos`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
   const respBody = await response.json();
   const repoDiv = document.querySelector('.show_repos');
+  repoDiv.innerHTML = '';
 
   // for loop which loops through the repo promises
   // eslint-disable-next-line no-plusplus
