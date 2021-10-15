@@ -1,8 +1,5 @@
 const api_url = "https://api.github.com/"
 // const user = "ntijoh-my-lovell"
-// hard coded user, needs to be changed into functions w/ get requests
-
-
 
 async function readFile(file) {
     return await fetch(file)
@@ -18,17 +15,18 @@ async function getToken() {
 document.querySelector("#user-search").addEventListener("submit", api);
 
 async function getRepositories(user) {
-    //const token = await getToken();
-    //console.log(token);
     const response = await fetch(api_url + "users/" + user + '/repos', { method: 'GET', headers: {'Authorization': 'token ' + await getToken()  }})
-    const json = await response.json()
-    console.log(response);
-    console.log(json);
-    return json.data;
-    //returns a promise containing a map with repos abd related data
-}
+    const resp_body = await response.json()
+    
+    resp_body.forEach(repo => {
+        console.log(repo.name)
+    });
+    //this is how we get the first name: console.log(resp_body[0].name);
+    //when the repository is clicked we need to call getForks(user,the_repository_that_has_been_clicked)
+    return resp_body.data;
+} 
 
-async function getForks(user) {
+async function getForks(user, repository) {
     const response = await fetch(api_url + "repos/" + user + "/" + repository + "forks", { method: 'GET', headers: {'Authorization': 'token ' + await getToken() }})
     const json = await response.json()
     return json.data;
