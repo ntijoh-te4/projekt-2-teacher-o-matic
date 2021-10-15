@@ -42,18 +42,19 @@ async function getRepositories(user) {
   return respBody.data;
 }
 
+// Function that gets things to call the getForks function
 async function fork(e) {
-  // eslint-disable-next-line no-alert
+// Gets the reponame of the link that was clicked
   // eslint-disable-next-line no-console
   const repoName = console.log(e.target.parentElement.parentElement.querySelector('.repo_title').textContent);
+  // Gets the user again
   const user = document.querySelector('input').value;
+  // Calls the getForks function and brings with the reponame and the user
   // eslint-disable-next-line no-use-before-define
   getForks(user, repoName);
 }
 
-// eslint-disable-next-line no-unused-vars
 async function getForks(user, repository) {
-  // eslint-disable-next-line no-console
   const response = await fetch(`${apiUrl}repos/${user}/${repository}forks`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
   const json = await response.json();
   return json.data;
