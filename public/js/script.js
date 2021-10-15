@@ -19,17 +19,21 @@ document.querySelector('#user-search').addEventListener('submit', api);
 async function getRepositories(user) {
   const response = await fetch(`${apiUrl}users/${user}/repos`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
   const respBody = await response.json();
-  const main = document.querySelector('.show_repos');
+  const repoDiv = document.querySelector('.show_repos');
 
+  // for loop which loops through the repo promises
   // eslint-disable-next-line no-plusplus
   for (let index = 0; index < respBody.length; index++) {
-    // console.log(respBody[index].name);
-
+    // This picks out the template, im totally sure how
     const template = document.querySelector('#repo-template-id');
     const clone = template.content.cloneNode(true);
+    // This picks changes the h5 title to the repo name
     clone.querySelector('.repo_title').textContent = respBody[index].name;
+
+    // This changes the github link so it gets the correct directory using user and the repo name
     clone.querySelector('.github_link').href = `https://github.com/${user}/${respBody[index].name}`;
-    main.appendChild(clone);
+    // This adds the repos to divs
+    repoDiv.appendChild(clone);
   }
   // when the repo is clicked we need to call getForks(user,the_repository_that_has_been_clicked)
   return respBody.data;
