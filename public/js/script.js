@@ -32,6 +32,9 @@ async function getRepositories(user) {
 
     // This changes the github link so it gets the correct directory using user and the repo name
     clone.querySelector('.github_link').href = `https://github.com/${user}/${respBody[index].name}`;
+    // adds eventlistener on fork links
+    // eslint-disable-next-line no-use-before-define
+    clone.querySelector('.fork_link').addEventListener('click', fork);
     // This adds the repos to divs
     repoDiv.appendChild(clone);
   }
@@ -39,8 +42,18 @@ async function getRepositories(user) {
   return respBody.data;
 }
 
+async function fork(e) {
+  // eslint-disable-next-line no-alert
+  // eslint-disable-next-line no-console
+  const repoName = console.log(e.target.parentElement.parentElement.querySelector('.repo_title').textContent);
+  const user = document.querySelector('input').value;
+  // eslint-disable-next-line no-use-before-define
+  getForks(user, repoName);
+}
+
 // eslint-disable-next-line no-unused-vars
 async function getForks(user, repository) {
+  // eslint-disable-next-line no-console
   const response = await fetch(`${apiUrl}repos/${user}/${repository}forks`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
   const json = await response.json();
   return json.data;
