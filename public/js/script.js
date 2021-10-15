@@ -19,12 +19,18 @@ document.querySelector('#user-search').addEventListener('submit', api);
 async function getRepositories(user) {
   const response = await fetch(`${apiUrl}users/${user}/repos`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
   const respBody = await response.json();
+  const main = document.querySelector('.show_repos');
 
-  respBody.forEach((repo) => {
-    // eslint-disable-next-line no-console
-    console.log(repo.name);
-  });
-  // this is how we get the first name: console.log(resp_body[0].name);
+  // eslint-disable-next-line no-plusplus
+  for (let index = 0; index < respBody.length; index++) {
+    // console.log(respBody[index].name);
+
+    const template = document.querySelector('#repo-template-id');
+    const clone = template.content.cloneNode(true);
+    clone.querySelector('.repo_title').textContent = respBody[index].name;
+    clone.querySelector('.github_link').href = `https://github.com/${user}/${respBody[index].name}`;
+    main.appendChild(clone);
+  }
   // when the repo is clicked we need to call getForks(user,the_repository_that_has_been_clicked)
   return respBody.data;
 }

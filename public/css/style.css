@@ -17,7 +17,7 @@ body{
 .show_forks{
 grid-area: left;
 }
-.sepperator{
+.seperator{
 grid-area: center;
 }
 .show_on_github{

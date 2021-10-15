@@ -8,7 +8,7 @@
     <title>Document</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="../public/css/style.css">
 </head>
 <body>
     <nav>
@@ -26,27 +26,20 @@
     </nav>
     <template id="repo-template-id">
         <div class="repo_div">
-            <h4 class="repo_title">Repository name</h4>
-            <div>
-                <a href="../views/fork_listing.html">Show forks</a>
+            <h5 class="repo_title">Repository name</h5>
+            <div class="show_forks">
+                <a href="../views/fork_listing.html" >Show forks</a>
+            </div>
+            <div class="seperator">
                 <p>|</p>
-                <a href="https://github.com/#{user}/#{Repository}">Show on Github</a>
+            </div>
+            <div class="show_on_github">
+                <a class="github_link" href="https://github.com/#{user}/#{Repository}" target="_blank">Show on Github</a>
             </div>
         </div>
     </template>
     <div class="show_repos">
-        <div class="repo_div">
-            <h4 class="repo_title">Repository name</h4>
-            <div class="show_forks">
-                <a href="../views/fork_listing.html" >Show forks</a>
-            </div>
-            <div class="sepperator">
-                <p>|</p>
-            </div>
-            <div class="show_on_github">
-                <a href="https://github.com/#{user}/#{Repository}" >Show on Github</a>
-            </div>
-        </div>
+        
     </div>
 
       <script src="../public/js/script.js"></script>
