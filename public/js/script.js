@@ -16,10 +16,30 @@ async function getToken() {
 // eslint-disable-next-line no-use-before-define
 document.querySelector('#user-search').addEventListener('submit', api);
 
+// eslint-disable-next-line no-unused-vars
+async function getForks(user, repository) {
+  const response = await fetch(`${apiUrl}repos/${user}/${repository}/forks`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
+  const respBody = await response.json();
+  const fullName = respBody[0].full_name;
+  const gitUrl = respBody[0].git_url;
+  // class=fullName in fork_listing.html
+  // eslint-disable-next-line no-console
+  console.log(fullName);
+  // class=gitUrl in fork_listing.html
+  // eslint-disable-next-line no-console
+  console.log(gitUrl);
+
+  return respBody.data;
+}
+
 async function getRepositories(user) {
   const response = await fetch(`${apiUrl}users/${user}/repos`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
   const respBody = await response.json();
   const repoDiv = document.querySelector('.show_repos');
+  // create a for loop instead of hard coded index=4
+  const repository = respBody[4].name;
+  // eslint-disable-next-line no-console
+  console.log(repository);
 
   // for loop which loops through the repo promises
   // eslint-disable-next-line no-plusplus
@@ -35,15 +55,9 @@ async function getRepositories(user) {
     // This adds the repos to divs
     repoDiv.appendChild(clone);
   }
+  getForks(user, repository);
   // when the repo is clicked we need to call getForks(user,the_repository_that_has_been_clicked)
   return respBody.data;
-}
-
-// eslint-disable-next-line no-unused-vars
-async function getForks(user, repository) {
-  const response = await fetch(`${apiUrl}repos/${user}/${repository}forks`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
-  const json = await response.json();
-  return json.data;
 }
 
 function api(e) {
