@@ -56,6 +56,10 @@ async function getForks(user, repository) {
 
 async function getRepositories(user) {
   const response = await fetch(`${apiUrl}users/${user}/repos`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
+  if (!response.ok) {
+    alert('User Was Not Found!');
+    return undefined;
+  }
   const respBody = await response.json();
   const repoDiv = document.querySelector('.show_repos');
   repoDiv.innerHTML = '';
