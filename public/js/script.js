@@ -12,6 +12,19 @@ async function getToken() {
   return response;
 }
 
+// eslint-disable-next-line no-use-before-define
+document.querySelector('#clear-input').addEventListener('click', clearInput);
+async function clearInput() {
+  // eslint-disable-next-line no-restricted-globals
+  addEventListener('click', (e) => {
+    if (e.target.id === 'clear-input') {
+      document.querySelector('#search').value = '';
+      const repoDiv = document.querySelector('.show_repos');
+      repoDiv.innerHTML = '';
+    }
+  });
+}
+
 // adds eventlistener on input
 // eslint-disable-next-line no-use-before-define
 document.querySelector('#user-search').addEventListener('submit', api);
@@ -36,10 +49,7 @@ async function getRepositories(user) {
   const response = await fetch(`${apiUrl}users/${user}/repos`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
   const respBody = await response.json();
   const repoDiv = document.querySelector('.show_repos');
-  // create a for loop instead of hard coded index=4
-  const repository = respBody[4].name;
-  // eslint-disable-next-line no-console
-  console.log(repository);
+  repoDiv.innerHTML = '';
 
   // for loop which loops through the repo promises
   // eslint-disable-next-line no-plusplus
@@ -52,12 +62,26 @@ async function getRepositories(user) {
 
     // This changes the github link so it gets the correct directory using user and the repo name
     clone.querySelector('.github_link').href = `https://github.com/${user}/${respBody[index].name}`;
+    // adds eventlistener on fork links
+    // eslint-disable-next-line no-use-before-define
+    clone.querySelector('.fork_link').addEventListener('click', fork);
     // This adds the repos to divs
     repoDiv.appendChild(clone);
   }
-  getForks(user, repository);
   // when the repo is clicked we need to call getForks(user,the_repository_that_has_been_clicked)
   return respBody.data;
+}
+
+// Function that gets things to call the getForks function
+async function fork(e) {
+// Gets the reponame of the link that was clicked
+  // eslint-disable-next-line no-console
+  const repoName = console.log(e.target.parentElement.parentElement.querySelector('.repo_title').textContent);
+  // Gets the user again
+  const user = document.querySelector('input').value;
+  // Calls the getForks function and brings with the reponame and the user
+  // eslint-disable-next-line no-use-before-define
+  getForks(user, repoName);
 }
 
 function api(e) {
