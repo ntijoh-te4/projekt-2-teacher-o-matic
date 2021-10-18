@@ -33,15 +33,20 @@ document.querySelector('#user-search').addEventListener('submit', api);
 async function getForks(user, repository) {
   const response = await fetch(`${apiUrl}repos/${user}/${repository}/forks`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
   const respBody = await response.json();
-  const fullName = respBody[0].full_name;
-  const gitUrl = respBody[0].git_url;
+  const forkDiv = document.querySelector('.show_fork');
+  forkDiv.innerHtml = '';
   // class=fullName in fork_listing.html
-  // eslint-disable-next-line no-console
-  console.log(fullName);
   // class=gitUrl in fork_listing.html
-  // eslint-disable-next-line no-console
-  console.log(gitUrl);
+  // eslint-disable-next-line no-plusplus
+  for (let index = 0; index < respBody.length; index++) {
+    const template = document.querySelector('#fork-template-id');
+    const clone = template.content.cloneNode(true);
 
+    clone.querySelector('.fullName').textContent = respBody[index].full_name;
+    clone.querySelector('.gitUrl').href = respBody[index].git_url;
+
+    forkDiv.appendChild(clone);
+  }
   return respBody.data;
 }
 
@@ -62,6 +67,7 @@ async function getRepositories(user) {
 
     // This changes the github link so it gets the correct directory using user and the repo name
     clone.querySelector('.github_link').href = `https://github.com/${user}/${respBody[index].name}`;
+
     // adds eventlistener on fork links
     // eslint-disable-next-line no-use-before-define
     clone.querySelector('.fork_link').addEventListener('click', fork);
@@ -74,9 +80,10 @@ async function getRepositories(user) {
 
 // Function that gets things to call the getForks function
 async function fork(e) {
-// Gets the reponame of the link that was clicked
+  e.preventDefault();
+  // Gets the reponame of the link that was clicked
   // eslint-disable-next-line no-console
-  const repoName = console.log(e.target.parentElement.parentElement.querySelector('.repo_title').textContent);
+  const repoName = e.target.parentElement.parentElement.querySelector('.repo_title').textContent;
   // Gets the user again
   const user = document.querySelector('input').value;
   // Calls the getForks function and brings with the reponame and the user
