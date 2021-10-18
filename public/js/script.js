@@ -29,6 +29,22 @@ async function clearInput() {
 // eslint-disable-next-line no-use-before-define
 document.querySelector('#user-search').addEventListener('submit', api);
 
+// eslint-disable-next-line no-unused-vars
+async function getForks(user, repository) {
+  const response = await fetch(`${apiUrl}repos/${user}/${repository}/forks`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
+  const respBody = await response.json();
+  const fullName = respBody[0].full_name;
+  const gitUrl = respBody[0].git_url;
+  // class=fullName in fork_listing.html
+  // eslint-disable-next-line no-console
+  console.log(fullName);
+  // class=gitUrl in fork_listing.html
+  // eslint-disable-next-line no-console
+  console.log(gitUrl);
+
+  return respBody.data;
+}
+
 async function getRepositories(user) {
   const response = await fetch(`${apiUrl}users/${user}/repos`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
   const respBody = await response.json();
@@ -66,12 +82,6 @@ async function fork(e) {
   // Calls the getForks function and brings with the reponame and the user
   // eslint-disable-next-line no-use-before-define
   getForks(user, repoName);
-}
-
-async function getForks(user, repository) {
-  const response = await fetch(`${apiUrl}repos/${user}/${repository}forks`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
-  const json = await response.json();
-  return json.data;
 }
 
 function api(e) {
