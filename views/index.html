@@ -43,59 +43,65 @@
         
     </div>
 
-    <template id="fork-template-id">
-        <div class="fork_div">
-            <!-- $(user)/$(repository) -->
-            <h3 class="fullName">ntijoh-TE4/smallest_of_two</h3>
 
-            <!-- template "code" -->
-            <p>
-                function smallestOfTwo (number1, number2){<br>
-                    if (number1 < number2){<br>
-                        let smallest = number1;<br>
-                    }<br>
-                    else {<br>
-                        smallest = number2;<br>
-                    }<br>
-                    return smallest;<br>
-                }
-            </p>
-            <!-- link to fork -->
-            <a class="gitUrl" href="https://github.com">Show on gitHub</a>
-            <form>
-                <input placeholder="Kommentar">Comment
-                <div>
-                    <input type="radio" id="done" name="status_grade" value="done">
-                    <label for="done">
-                        <span class="material-icons">
-                            done
-                        </span>
-                            Klar
-                    </label><br>
+    <template id="fork-template-id">
+        <div class="container">
+            <div class="row">
+                <div class="col s6">
+                    <div class="card">
+                        <div class="card-content black-text">
+                            <span class="fullName">itggot/smallest_of_two</span>
+                            <div class="card darken-3 grey">
+                                <code class="white-text">
+                                    function smallestOfTwo(num1,num2) { <br>
+                                        if (num1 < num2) return num1 <br>
+                                    }
+                                </code> 
+                            </div>
+                            <a class="gitUrl">Show on GitHub</a>
+                            <p><br>Test "Num1 is smallest": Passed</p>
+                            <p>Test "Num2 is smallest": Passed</p>
+                            <p>Test "They are both equal": Failed</p>
+                            <br>
+                            <br>
+                            <div class="card-action">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                    <label for="textarea1">Comment</label>
+                                    </div>
+                                </div>
+                                <form action="#">
+                                    <p>
+                                    <label>
+                                        <input name="group1" type="radio" />
+                                        <span><i class="small material-icons">done</i>Klar</span>
+                                    </label>
+                                    </p>
+                                    <p>
+                                    <label>
+                                        <input name="group1" type="radio" />
+                                        <span><i class="small material-icons">refresh</i>Åtgärd krävs</span>
+                                    </label>
+                                    </p>
+                                    <p>
+                                    <label>
+                                        <input name="group1" type="radio" checked/>
+                                        <span><i class="small material-icons">visibility_off</i>Ej Bedömd</span>
+                                    </label>
+                                    </p>
+                                </form>
+                            </div>
+                            <a class="waves-effect waves-light btn">SAVE</a>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <input type="radio" id="measure" name="status_grade" value="measure">
-                    <label for="measure">
-                        <span class="material-icons">
-                            autorenew
-                        </span>
-                        Åtgärd Krävs
-                    </label>
+                <div class="col s6">
                 </div>
-                <div>
-                    <input type="radio" id="not_graded" name="status_grade" value="not_graded" checked>
-                    <label for="not_graded">
-                        <span class="material-icons">
-                            hide_source
-                        </span>Ej Bedömd
-                    </label>
-                </div>
-                <button type="submit">
-                    SAVE
-                </button>
-            </form>
+            </div>
         </div>
     </template>
+
     <div class="show_fork">
 
     </div>

@@ -43,7 +43,7 @@ async function getForks(user, repository) {
     const clone = template.content.cloneNode(true);
 
     clone.querySelector('.fullName').textContent = respBody[index].full_name;
-    clone.querySelector('.gitUrl').href = respBody[index].git_url;
+    clone.querySelector('.gitUrl').href = respBody[index].clone_url;
 
     forkDiv.appendChild(clone);
   }
