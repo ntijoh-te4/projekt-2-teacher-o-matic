@@ -12,16 +12,18 @@ async function getToken() {
   return response;
 }
 
+// eslint-disable-next-line no-use-before-define
 document.querySelector('#clear-input').addEventListener('click', clearInput);
-async function clearInput(){
+async function clearInput() {
+  // eslint-disable-next-line no-restricted-globals
   addEventListener('click', (e) => {
-    console.log('fuck you');
     if (e.target.id === 'clear-input') {
       document.querySelector('#search').value = '';
       const repoDiv = document.querySelector('.show_repos');
       repoDiv.innerHTML = '';
     }
-  })};
+  });
+}
 
 // adds eventlistener on input
 // eslint-disable-next-line no-use-before-define
