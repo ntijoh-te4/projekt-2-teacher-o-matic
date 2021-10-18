@@ -20,7 +20,9 @@ async function clearInput() {
     if (e.target.id === 'clear-input') {
       document.querySelector('#search').value = '';
       const repoDiv = document.querySelector('.show_repos');
+      const forkDiv = document.querySelector('.show_fork');
       repoDiv.innerHTML = '';
+      forkDiv.innerHTML = '';
     }
   });
 }
@@ -35,6 +37,8 @@ async function getForks(user, repository) {
   const respBody = await response.json();
   const forkDiv = document.querySelector('.show_fork');
   forkDiv.innerHtml = '';
+  const repoDiv = document.querySelector('.show_repos');
+  repoDiv.innerHTML = '';
   // class=fullName in fork_listing.html
   // class=gitUrl in fork_listing.html
   // eslint-disable-next-line no-plusplus
