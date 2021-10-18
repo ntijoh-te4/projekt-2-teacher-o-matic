@@ -63,18 +63,18 @@ async function fork(e) {
 
 async function getRepositories(user) {
   const response = await fetch(`${apiUrl}users/${user}/repos`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
+  const respBody = await response.json();
+  const repoDiv = document.querySelector('.show_repos');
   if (!response.ok) {
     // eslint-disable-next-line no-alert
     alert('User Was Not Found!');
     return undefined;
   }
-  const respBody = await response.json();
-  if (!respBody.ok) {
+  if (respBody.length === 0) {
     // eslint-disable-next-line no-alert
-    alert('User Exist But Does Not Have Any Repositories!');
+    alert('User Exist But Does Not Have Any Repositories');
     return undefined;
   }
-  const repoDiv = document.querySelector('.show_repos');
   repoDiv.innerHTML = '';
 
   respBody.forEach((repo) => {
