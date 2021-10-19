@@ -97,7 +97,8 @@ async function getRepositories(user) {
     // adds eventlistener on fork links
     clone.querySelector('.fork_link').addEventListener('click', fork);
     // This adds the repos to divs
-    clone.querySelector('.show_forks_numbers').textContent = forkDiv.length;
+    clone.querySelector('.show_forks_numbers').textContent = repo.forks_count;
+
     repoDiv.appendChild(clone);
   });
 
