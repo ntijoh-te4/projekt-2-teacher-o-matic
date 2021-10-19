@@ -27,6 +27,11 @@ async function getForks(user, repository) {
   forkDiv.innerHtml = '';
   const repoDiv = document.querySelector('.show_repos');
   repoDiv.innerHTML = '';
+  if (respBody.length === 0) {
+    // eslint-disable-next-line no-alert
+    alert('No forks here!');
+    return undefined;
+  }
 
   respBody.forEach((singleFork) => {
     const template = document.querySelector('#fork-template-id');
