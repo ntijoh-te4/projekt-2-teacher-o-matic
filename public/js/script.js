@@ -20,6 +20,18 @@ async function clearInput(e) {
   }
 }
 
+async function getManifest(user, repository) {
+  fetch(`${apiUrl}repos/${user}/${repository}/contents/.manifest.json`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } })
+    // eslint-disable-next-line consistent-return
+    .then((response) => {
+      if (response.status === 404) {
+        return false;
+      } if (response.status === 200) {
+        return true;
+      }
+    });
+}
+
 async function getForks(user, repository) {
   const response = await fetch(`${apiUrl}repos/${user}/${repository}/forks`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
   const respBody = await response.json();
@@ -27,20 +39,20 @@ async function getForks(user, repository) {
   forkDiv.innerHtml = '';
   const repoDiv = document.querySelector('.show_repos');
   repoDiv.innerHTML = '';
+  // console.log(respBody);
   if (respBody.length === 0) {
     // eslint-disable-next-line no-alert
     alert('No forks here!');
     return undefined;
   }
-
   respBody.forEach((singleFork) => {
-    const template = document.querySelector('#fork-template-id');
-    const clone = template.content.cloneNode(true);
-
-    clone.querySelector('.fullName').textContent = singleFork.full_name;
-    clone.querySelector('.gitUrl').href = singleFork.clone_url;
-
-    forkDiv.appendChild(clone);
+    if (getManifest(user, repository)) {
+      const template = document.querySelector('#fork-template-id');
+      const clone = template.content.cloneNode(true);
+      clone.querySelector('.fullName').textContent = singleFork.full_name;
+      clone.querySelector('.gitUrl').href = singleFork.clone_url;
+      forkDiv.appendChild(clone);
+    }
   });
 
   // for (let index = 0; index < respBody.length; index++) {
