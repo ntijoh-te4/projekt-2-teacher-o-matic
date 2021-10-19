@@ -79,9 +79,12 @@ async function fork(e) {
 }
 
 async function getRepositories(user) {
+  const repoDiv = document.querySelector('.show_repos');
+  const forkDiv = document.querySelector('.show_fork');
+  repoDiv.innerHTML = '';
+  forkDiv.innerHTML = '';
   const response = await fetch(`${apiUrl}users/${user}/repos`, { method: 'GET', headers: { Authorization: `token ${await getToken()}` } });
   const respBody = await response.json();
-  const repoDiv = document.querySelector('.show_repos');
   if (!response.ok) {
     // eslint-disable-next-line no-alert
     alert('User Was Not Found!');
