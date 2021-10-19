@@ -23,12 +23,15 @@ grid-area: center;
 .show_on_github{
 grid-area: right;
 }
+.forks_number{
+grid-area: menu;
+}
 .repo_div{
     border-style: groove;
     display: grid;
     grid-template-areas:
-        'top top top'
-        'left center right';
+        'top top top top'
+        'left center right menu';
     grid-gap: 10px;
     padding: 10px;
     margin: 3%;
